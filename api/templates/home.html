@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Puthon-Validator</title>
+    <script>
+        function get64() {
+            var file = document.querySelector(
+                'input[type=file]')['files'][0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function() {
+                base64String = reader.result.replace("data:", "")
+                    .replace(/^.+,/, "");
+                imageBase64Stringsep = base64String;
+                console.log(base64String);
+                document.getElementById("img").value = base64String;
+            }    
+        }
+    </script>
+</head>
+
+<body>
+    
+    <form action="#" method="post">
+        <input type="file" name="image" onchange="get64()">
+        <br><br>
+        <input type="text" id="img" name="img" class="visibility: hidden;">
+        <br><br>
+        <input type="submit" value="Validate">
+    </form>
+    <p>{{imgRes}}</p>
+    
+</body>
+
+</html>
